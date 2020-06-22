@@ -21,7 +21,7 @@ void menu(RenderWindow & window) {
 	menuTexture1.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/start.png");
 	menuTexture2.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/about.png");
 	menuTexture3.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/exit.png");
-	aboutTexture.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/aboutBackground.jpg");
+	aboutTexture.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/i.jpg");
 	menuBackground.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/menu.png");
 	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3), about(aboutTexture), menuBg(menuBackground);
 	bool isMenu = 1;
@@ -124,7 +124,8 @@ void GameRun() {
 
 			Vector2f a = Puck1.get().getPosition();
 
-			
+			if (a.x < 0 || a.x > 770) Puck1.dx_Puck = -Puck1.dx_Puck;   //Пофиксили
+			if (a.y < 0 || a.y > 560) Puck1.dy_Puck = -Puck1.dy_Puck;
 
 			Vector2f b = puddle1.getPaddle().getPosition();
 
@@ -156,7 +157,19 @@ void GameRun() {
 				pusk = false;
 			}
 
-			
+			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Right))) //Чтобы мяч вбок не уходил
+			{
+				if (a.x < 760) {
+					Puck1.Puck1.move(dx_Paddle, 0);
+				}
+			}
+
+			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Left)))
+			{
+				if (a.x > 0) {
+					Puck1.Puck1.move(-dx_Paddle, 0);
+				}
+			}
 
 			if (b.x > 705) {    //Попроавили
 				puddle1.break_L();

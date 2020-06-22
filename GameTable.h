@@ -15,5 +15,8 @@ public:
 	~GameTable();
 };
 
-void GameLose();
+void menu(RenderWindow & window);
+void GameRun();
 void GameWin();
+void GameLose();
+void getHP();
