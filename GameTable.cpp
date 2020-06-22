@@ -134,7 +134,7 @@ void GameRun() {
 				if (_HP < 1)
 				{
 					app.close();
-					//GameLose();
+					GameLose();
 				}
 				
 				_HP--;
@@ -208,5 +208,32 @@ void GameWin() {
 }
 
 
+void GameLose() {
+	RenderWindow app(VideoMode(800, 600), "You lose!");
+	Texture BG;
 
+	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/lose.png");
+
+	Sprite Background(BG);
+
+	while (app.isOpen()) {
+		Event e;
+		while (app.pollEvent(e)) {
+			if (e.type == Event::Closed) {
+				app.close();
+			}
+		}
+
+		app.clear();
+		app.draw(Background);
+		app.display();
+	}
+}
+
+
+
+
+GameTable::~GameTable()
+{
+}
 
