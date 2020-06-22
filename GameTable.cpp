@@ -128,7 +128,7 @@ void GameRun() {
 
 			Vector2f b = puddle1.getPaddle().getPosition();
 
-			if (n1 == 0) { app.close(); }//GameWin(); }
+			if (n1 == 0) { app.close(); GameWin(); }
 			if (a.y > 560)
 			{
 				if (_HP < 1)
@@ -183,6 +183,30 @@ void GameRun() {
 			app.display();
 	}
 }
+
+
+void GameWin() {
+	RenderWindow app(VideoMode(800, 600), "You win!");
+	Texture BG;
+
+	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/win.png");
+
+	Sprite Background(BG);
+
+	while (app.isOpen()) {
+		Event e;
+		while (app.pollEvent(e)) {
+			if (e.type == Event::Closed) {
+				app.close();
+			}
+		}
+
+		app.clear();
+		app.draw(Background);
+		app.display();
+	}
+}
+
 
 
 

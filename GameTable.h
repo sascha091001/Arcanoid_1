@@ -14,3 +14,6 @@ public:
 	GameTable();
 	~GameTable();
 };
+
+void GameLose();
+void GameWin();
