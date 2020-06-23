@@ -13,13 +13,7 @@ class GameTable
 public:
 	GameTable();
 	~GameTable();
-	//void setHP(int HP);
-	//int getHP();
-
-private:
-
 };
-
 
 void menu(RenderWindow & window);
 void GameRun();
