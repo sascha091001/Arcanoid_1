@@ -197,6 +197,27 @@ void GameRun() {
 	}
 }
 
+void GameWin() {
+	RenderWindow app(VideoMode(800, 600), "You win!");
+	Texture BG;
+
+	BG.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/win.jpg");
+
+	Sprite Background(BG);
+
+	while (app.isOpen()) {
+		Event e;
+		while (app.pollEvent(e)) {
+			if (e.type == Event::Closed) {
+				app.close();
+			}
+		}
+
+		app.clear();
+		app.draw(Background);
+		app.display();
+	}
+}
 
 
 
