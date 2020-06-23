@@ -32,3 +32,15 @@ public:
 	void move_y() {
 		Puck1.move(0, dy_Puck);
 	}
+	
+	friend class BrickPile;
+private:
+
+	int _size_x;
+	int _size_y;
+
+	Texture Puck_Pict;
+
+	int _pos_x;
+	int _pos_y;
+};
