@@ -243,7 +243,85 @@ void GameLose() {
 }
 
 
+void getHP() {
+	RenderWindow app(VideoMode(800, 600), "Choose a HP amount");
+	Texture BG;
+	Texture B1, B2, B3, B4, B5;
+	B1.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/1hp.jpg");
+	B2.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/2hp.jpg");
+	B3.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/3hp.jpg");
+	B4.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/4hp.jpg");
+	B5.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/5hp.jpg");
+	BG.loadFromFile("C:/Users/yurin/source/repos/PROJECT_1/Images/images/HP.jpg");
+	Sprite But1(B1), But2(B2), But3(B3), But4(B4), But5(B5), Back(BG);
+	bool isMenu = 1;
+	int butNum = 0;
+	But1.setPosition(40, 400);
+	But2.setPosition(200, 400);
+	But3.setPosition(360, 400);
+	But4.setPosition(520, 400);
+	But5.setPosition(680, 400);
 
+	while (isMenu)
+	{
+		But1.setColor(Color::White);
+		But2.setColor(Color::White);
+		But3.setColor(Color::White);
+		But4.setColor(Color::White);
+		But5.setColor(Color::White);
+		butNum = 0;
+		app.clear(Color(129, 181, 221));
+
+		if (IntRect(40, 400, 70, 70).contains(Mouse::getPosition(app))) { But1.setColor(Color::Blue); butNum = 1; }
+		if (IntRect(200, 400, 70, 70).contains(Mouse::getPosition(app))) { But2.setColor(Color::Blue); butNum = 2; }
+		if (IntRect(360, 400, 70, 70).contains(Mouse::getPosition(app))) { But3.setColor(Color::Blue); butNum = 3; }
+		if (IntRect(520, 400, 70, 70).contains(Mouse::getPosition(app))) { But4.setColor(Color::Blue); butNum = 4; }
+		if (IntRect(680, 400, 70, 70).contains(Mouse::getPosition(app))) { But5.setColor(Color::Blue); butNum = 5; }
+
+		if (Mouse::isButtonPressed(Mouse::Left))
+		{
+			if (butNum == 1) {
+				isMenu = false;
+				app.close();
+				_HP = 1;
+				GameRun();
+			}
+
+			if (butNum == 2) {
+				isMenu = false;
+				app.close();
+				_HP = 2;
+				GameRun();
+			}
+			if (butNum == 3) {
+				isMenu = false;
+				app.close();
+				_HP = 3;
+				GameRun();
+			}
+			if (butNum == 4) {
+				isMenu = false;
+				app.close();
+				_HP = 4;
+				GameRun();
+			}
+			if (butNum == 5) {
+				isMenu = false;
+				app.close();
+				_HP = 5;
+				GameRun();
+			}
+		}
+
+		app.draw(Back);
+		app.draw(But1);
+		app.draw(But2);
+		app.draw(But3);
+		app.draw(But4);
+		app.draw(But5);
+		app.display();
+	}
+}
 
 GameTable::~GameTable()
 {
