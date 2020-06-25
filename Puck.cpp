@@ -5,7 +5,7 @@
 
 Puck::Puck()
 {
-	Puck_Pict.loadFromFile("E:/pictures/puck_1.png");
+	Puck_Pict.loadFromFile("D:/pictures/puck_1.png");
 	Puck1.setTexture(Puck_Pict);
 	Puck1.setPosition(330, 540);
 }
