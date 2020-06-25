@@ -13,10 +13,15 @@ class GameTable
 public:
 	GameTable();
 	~GameTable();
+
+	void menu(RenderWindow & window);
+	void GameRun();
+	void GameWin();
+	void GameLose();
+	void getHP();
+
+private:
+
 };
 
-void menu(RenderWindow & window);
-void GameRun();
-void GameWin();
-void GameLose();
-void getHP();
+

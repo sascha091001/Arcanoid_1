@@ -5,7 +5,7 @@
 
 Brick::Brick()
 {
-	Brick_Pict.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/brick_2_3.png");
+	Brick_Pict.loadFromFile("E:/pictures/brick_2_3.png");
 }
 
 

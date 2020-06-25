@@ -11,18 +11,18 @@ int _HP = 0;
 
 GameTable::GameTable()
 {
-	RenderWindow app(VideoMode(800, 600), "Alex!");
+	RenderWindow app(VideoMode(800, 600), "Gorshkonoid!");
 	menu(app);
 }
 
 
-void menu(RenderWindow & window) {
+void GameTable::menu(RenderWindow & window) {
 	Texture menuTexture1, menuTexture2, menuTexture3, aboutTexture, menuBackground;
-	menuTexture1.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/start.png");
-	menuTexture2.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/about.png");
-	menuTexture3.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/exit.png");
-	aboutTexture.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/i.jpg");
-	menuBackground.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/menu.png");
+	menuTexture1.loadFromFile("E:/pictures/start.png");
+	menuTexture2.loadFromFile("E:/pictures/about.png");
+	menuTexture3.loadFromFile("E:/pictures/exit.png");
+	aboutTexture.loadFromFile("E:/pictures/aboutBackground.png");
+	menuBackground.loadFromFile("E:/pictures/menu.png");
 	Sprite menu1(menuTexture1), menu2(menuTexture2), menu3(menuTexture3), about(aboutTexture), menuBg(menuBackground);
 	bool isMenu = 1;
 	int menuNum = 0;
@@ -47,6 +47,7 @@ void menu(RenderWindow & window) {
 			if (menuNum == 1) {
 				isMenu = false;
 				window.close();
+			//	GameRun();
 				getHP();
 			}
 
@@ -68,24 +69,23 @@ bool isCollide(Sprite s1, Sprite s2) {
 }
 
 
-void GameRun() {
+void GameTable::GameRun() {
 	_HP--;
 	int Score = 0;
+	bool pause = false;
 	PuckSupply PS(_HP);
-	BrickPile BP; //Стена
-	Paddle puddle1;//Телега
-	Puck Puck1;   //Шайба1
+	BrickPile BP; 
+	Paddle puddle1;
+	Puck Puck1;   
 	RenderWindow app(VideoMode(800, 600), "Gorshkonoid!");
 	app.setFramerateLimit(60);
 	Texture	BG;
-	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/background.jpg");
+	BG.loadFromFile("E:/pictures/background.jpg");
 
 	Sprite background(BG);
 
 	float dx_Paddle = 6;
 	bool pusk = true;
-	//float dx_Puck = 6;
-	//float dy_Puck = 0;
 
 	int n1 = BP.n;
 
@@ -124,7 +124,7 @@ void GameRun() {
 
 			Vector2f a = Puck1.get().getPosition();
 
-			if (a.x < 0 || a.x > 770) Puck1.dx_Puck = -Puck1.dx_Puck;   //Пофиксили
+			if (a.x < 0 || a.x > 770) Puck1.dx_Puck = -Puck1.dx_Puck;  
 			if (a.y < 0 || a.y > 560) Puck1.dy_Puck = -Puck1.dy_Puck;
 
 			Vector2f b = puddle1.getPaddle().getPosition();
@@ -148,16 +148,29 @@ void GameRun() {
 
 			if (Keyboard::isKeyPressed(Keyboard::Right)) puddle1.Right();
 			if (Keyboard::isKeyPressed(Keyboard::Left)) puddle1.Left();
-			if (Keyboard::isKeyPressed(Keyboard::Space)) Sleep(2000);
+			if (Keyboard::isKeyPressed(Keyboard::Space)) 
+			{
+				pause = true;
+				while (pause == true)
+				{
+					Sleep(2000);
+					if (Keyboard::isKeyPressed(Keyboard::P))
+					{
+						pause = false;
+						break;
+					}
+				}
+
+			}
 
 
-			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Up))) //Правим
+			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Up))) 
 			{
 				Puck1.Ball_up();
 				pusk = false;
 			}
 
-			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Right))) //Чтобы мяч вбок не уходил
+			if ((pusk == true) and (Keyboard::isKeyPressed(Keyboard::Right)))
 			{
 				if (a.x < 760) {
 					Puck1.Puck1.move(dx_Paddle, 0);
@@ -171,17 +184,16 @@ void GameRun() {
 				}
 			}
 
-			if (b.x > 705) {    //Попроавили
+			if (b.x > 705) {    
 				puddle1.break_L();
 			}
 
-			if (b.x < 0) {    //Поправили
+			if (b.x < 0) {    
 				puddle1.break_R();
 			}
 
-			if (isCollide(puddle1.getPaddle(), Puck1.get())) { //Поправили
+			if (isCollide(puddle1.getPaddle(), Puck1.get())) { 
 				Puck1.dy_Puck = -Puck1.dy_Puck;
-				//dy_Puck = -dy_Puck;
 			}
 
 			app.clear();
@@ -198,11 +210,11 @@ void GameRun() {
 }
 
 
-void GameWin() {
+void GameTable::GameWin() {
 	RenderWindow app(VideoMode(800, 600), "You win!");
 	Texture BG;
 
-	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/win.png");
+	BG.loadFromFile("E:/pictures/win.png");
 
 	Sprite Background(BG);
 
@@ -221,11 +233,11 @@ void GameWin() {
 }
 
 
-void GameLose() {
+void GameTable::GameLose() {
 	RenderWindow app(VideoMode(800, 600), "You lose!");
 	Texture BG;
 
-	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/lose.png");
+	BG.loadFromFile("E:/pictures/lose.png");
 
 	Sprite Background(BG);
 
@@ -243,16 +255,16 @@ void GameLose() {
 	}
 }
 
-void getHP() {
+void GameTable::getHP() {
 	RenderWindow app(VideoMode(800, 600), "Choose a HP amount");
 	Texture BG;
 	Texture B1, B2, B3, B4, B5;
-	B1.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/1hp.png");
-	B2.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/2hp.png");
-	B3.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/3hp.png");
-	B4.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/4hp.png");
-	B5.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/5hp.png");
-	BG.loadFromFile("C:/Users/Alex/source/repos/Arcanoid_Project/Arcanoid_Project/images/backgroundHP.jpg");
+	B1.loadFromFile("E:/pictures/1hp.png");
+	B2.loadFromFile("E:/pictures/2hp.png");
+	B3.loadFromFile("E:/pictures/3hp.png");
+	B4.loadFromFile("E:/pictures/4hp.png");
+	B5.loadFromFile("E:/pictures/5hp.png");
+	BG.loadFromFile("E:/pictures/backgroundHP.jpg");
 	Sprite But1(B1), But2(B2), But3(B3), But4(B4), But5(B5), Back(BG);
 	bool isMenu = 1;
 	int butNum = 0;

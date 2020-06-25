@@ -20,7 +20,8 @@ PuckSupply::~PuckSupply()
 Puck PuckSupply::getPuck()
 {
 	if (_cnt > 0) {
-		cout << "Debug of HP: " << _cnt<< endl;
+		cout << "Debug of HP: " << _cnt << endl;
 		return _Puck_arr[--_cnt];
 	}
+	return _Puck_arr[_cnt];
 }

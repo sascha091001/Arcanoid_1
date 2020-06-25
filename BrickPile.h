@@ -9,11 +9,8 @@ public:
 	BrickPile();
 	~BrickPile();
 
-	void Destroy(Puck p);
 
-	friend class GameTable;
-	//friend class Brick;
-	friend void GameRun();
+	friend class GameTable;   
 
 	Sprite getBlocks() {
 		return *block;
@@ -25,7 +22,7 @@ private:
 	Sprite block[1000];
 
 	Brick *_Brick_Pile;
-	int _amount = 50; //Пока фиксированное количество кирпичей
+	int _amount = 50; 
 	int _bricks_x = 10;
 	int _bricks_y = 5;
 };
